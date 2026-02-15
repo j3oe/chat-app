@@ -1,14 +1,16 @@
 {
-  "name": "simple-chat",
+  "name": "chat-app",
   "version": "1.0.0",
-  "description": "Simple cross platform chat app",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "server": "node server.js"
+    "dist": "electron-builder"
   },
-  "dependencies": {
-    "ws": "^8.0.0",
-    "electron": "^26.0.0"
+  "build": {
+    "appId": "com.j3oe.chatapp",
+    "mac": {
+      "category": "public.app-category.social-networking",
+      "target": ["dmg", "zip"]
+    }
   }
 }
