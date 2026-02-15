@@ -1,7 +1,6 @@
-// --- WEBSOCKET SETUP ---
 const ws = new WebSocket('ws://localhost:8080');
 
-// --- USERNAME HANDLING ---
+// --- USERNAME PROMPT & LOCK ---
 let username = localStorage.getItem('username');
 if (!username) {
     username = prompt("Enter your chat name:");
@@ -9,12 +8,12 @@ if (!username) {
     localStorage.setItem('username', username);
 }
 
-// --- ELEMENTS ---
+// --- DOM ELEMENTS ---
 const messagesDiv = document.getElementById('messages');
 const input = document.getElementById('message-input');
 const sendBtn = document.getElementById('send-btn');
 
-// --- SHOW USERNAME ---
+// --- DISPLAY USERNAME ---
 const usernameDisplay = document.createElement('div');
 usernameDisplay.textContent = `You are: ${username}`;
 usernameDisplay.style.fontWeight = 'bold';
@@ -34,7 +33,6 @@ function sendMessage() {
     const text = input.value.trim();
     if (!text) return;
 
-    // Send with username
     ws.send(`${username}: ${text}`);
     input.value = '';
 }
@@ -44,7 +42,7 @@ input.addEventListener('keypress', e => {
     if (e.key === 'Enter') sendMessage();
 });
 
-// --- OPTIONAL: CLEAR USERNAME ON APP CLOSE ---
+// Optional: clear username on app close
 window.addEventListener('beforeunload', () => {
     localStorage.removeItem('username');
 });
