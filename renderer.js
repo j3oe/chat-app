@@ -1,6 +1,6 @@
 const ws = new WebSocket('ws://localhost:8080');
 
-// --- USERNAME PROMPT & LOCK ---
+// --- USERNAME HANDLING ---
 let username = localStorage.getItem('username');
 if (!username) {
     username = prompt("Enter your chat name:");
@@ -13,7 +13,7 @@ const messagesDiv = document.getElementById('messages');
 const input = document.getElementById('message-input');
 const sendBtn = document.getElementById('send-btn');
 
-// --- DISPLAY USERNAME ---
+// --- SHOW USERNAME ---
 const usernameDisplay = document.createElement('div');
 usernameDisplay.textContent = `You are: ${username}`;
 usernameDisplay.style.fontWeight = 'bold';
